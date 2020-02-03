@@ -2,12 +2,10 @@
 #from Models.PTBoat import *
 from Models.Fleet import *
 from Models.Player import *
+from Game import *
 
 
+game = Game()
+game.initGame()
 
-p = Player("myName")
-p.getFleet()
-print(p.f)
-
-
-print("hello")
+print("made it")

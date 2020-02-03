@@ -12,5 +12,6 @@ class Order(object):
     coordinates = Coordinate(-1,-1)
     orderfrom = ""
     ordertype = OrderType.Attack
+    attacking = ""
 
 
