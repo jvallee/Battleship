@@ -2,7 +2,7 @@ from .Ship import *
 
 class AircraftCarrier(Ship):
     """description of class"""
-    length = 2
+    length = 5
 
 
 class Battleship(Ship):
@@ -12,7 +12,6 @@ class Battleship(Ship):
 
 class Destroyer(Ship):
     """description of class"""
-    
     length = 4
 
 
