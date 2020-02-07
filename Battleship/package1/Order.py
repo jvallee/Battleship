@@ -14,6 +14,7 @@ class OrderResult(Enum):
     Shipmiss = 2
     Shipfound = 3
     shipnotfound = 4
+    Shipsunk = 5
 
 
 class Order(object):

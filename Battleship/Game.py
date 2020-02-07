@@ -9,7 +9,7 @@ class Game(object):
     gameover = False
     fleetsandcoordinates  = {}
     
-    def initGame(self):
+    def     initGame(self):
         self.makePlayers()
         self.makeFleets()
         p:Player
@@ -19,12 +19,23 @@ class Game(object):
 
         self.placePlayersFleets()
         
+    def initBoard(self):
+        self.board = [[0 for x in range(20)] for y in range(20)]
+        i = 0 
+        for y in range(0,20):
+            for x in range(0,20):
+                self.board[y][x] = '0'
+                i+=1
+
+    def printBoard(self):
+        for row in self.board:
+            print(row)
+
 
 
     def makePlayers(self):
         self.players.append(Player("Player1"))
         self.players.append(userPlayer("Player2"))
-
     
 
     def makeFleets(self):
@@ -34,13 +45,6 @@ class Game(object):
             p.getFleet()
             self.fleets[p.name] = p.f #need to be able to handle name collisions
         return 
-   
-
-
-    def validateFleets(self):
-        print("validating Ships")
-
-
 
 
     def placePlayersFleets(self):
@@ -74,9 +78,14 @@ class Game(object):
 
             elif ship.shipOrientation == Orientation.Vertical:
                 c = (x, y+i)
+            else:
+                print("Why are we here?")
 
             if c in playerships:
                 raise Exception("Ship already here")
+            
+            if c[0] < 0 or c[0] > 19 or c[1] < 0 or c[1] > 19:
+                raise Exception("Ship is outside of battlefield")
             
             else:
                 playerships[c] = ship
@@ -87,8 +96,11 @@ class Game(object):
 
 
     def startGame(self):
+        self.initBoard()
         while not self.gameover:
             p: Player
+            print('\n\n\n\n')
+            self.printBoard()
             for p in self.players:
                 if p.isSunk == True:
                     continue
@@ -100,6 +112,7 @@ class Game(object):
                 if o.coordinates == (17,17):
                     print("here")
                 if o.orderresult == OrderResult.Shiphit:
+                    
                     print("hit here")
                 self.isGameOver()
                 if self.gameover:
@@ -142,16 +155,21 @@ class Game(object):
                 offset = o.coordinates[0] - ship.position[0]
             ship.damage[offset] = True
             o.orderresult = OrderResult.Shiphit
+            if o.attacking == 'Player1': 
+                self.board[o.coordinates[1]][o.coordinates[0]] = '*'
             print(o.orderfrom, " hit ", o.attacking, " at ", o.coordinates)
 
         else:
             print(o.orderfrom, " missed ", o.attacking, " at ", o.coordinates)
-
+            o.orderresult = OrderResult.Shipmiss
+            if o.attacking == 'Player1':              
+                self.board[o.coordinates[1]][o.coordinates[0]] = 'X'
 
 
 
     def ExecuteRecon(Self, o):
         print("Execiting Recon")
+        #recon is not supported in this iteration of battleship
 
 
 

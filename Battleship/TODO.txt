@@ -1,0 +1,9 @@
+1. Allow player to place fleet (DONE)
+
+2. let players request to see map of their fleet or enemies fleet
+
+3. Implement input validater for fleet placement (Done?)
+
+4. Implment recon
+
+5. Implement help (h) from 
