@@ -6,4 +6,7 @@
 
 4. Implment recon
 
-5. Implement help (h) from 
+5. Implement help (h) from terminal to let the user see avaible options 
+	make some options like see your fleet, see oppenets fleet, endgame etc
+
+6. Make a README
