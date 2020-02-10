@@ -1,6 +1,7 @@
 1. Allow player to place fleet (DONE)
 
 2. let players request to see map of their fleet or enemies fleet
+	2.a UPDATE: is not a request rather prints it out every turn but does not update if you were hit
 
 3. Implement input validater for fleet placement (Done?)
 
