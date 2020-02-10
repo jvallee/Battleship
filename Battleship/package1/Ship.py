@@ -6,13 +6,10 @@ class Orientation(Enum):
 
 
 class Ship(object):
-    def __init__(self, x = 0, y = 0):
+    def __init__(self, x = 0, y = 0, fleetName = ""):
         self.position = (x,y)
         self.shipOrientation = Orientation.Vertical
-
-
-    
-
+        self.fleetName = fleetName
 
     def initializeDamage(self):
         self.damage = [False]*self.length

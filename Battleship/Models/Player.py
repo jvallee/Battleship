@@ -41,7 +41,7 @@ class Player(object):
         self.players = newplayers
 
     def getFleet(self):
-        self.f = Fleet("")
+        self.f = Fleet(self.name)
         self.f.name = self.name
         return self.f
 
@@ -55,7 +55,7 @@ class userPlayer(Player):
         
         while True:
             try:
-                print("\n     Placing ", ship.name)
+                print("\n     Placing ", ship.name, " of length ", ship.length)
                 x = int(input("         enter X Coordinate:\n       "))
                 y = int(input("         enter Y Coordinate:\n       "))
                 orientation = input("         enter orientation (h or v):\n       ")
@@ -77,7 +77,7 @@ class userPlayer(Player):
 
 
     def getFleet(self):
-        self.f = Fleet("")
+        self.f = Fleet(self.name)
         self.f.name = self.name
         print("Getting ready to place your Fleet")
         for ship in self.f.GetShips():

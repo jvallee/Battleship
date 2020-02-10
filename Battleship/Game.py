@@ -9,7 +9,8 @@ class Game(object):
     gameover = False
     fleetsandcoordinates  = {}
     
-    def     initGame(self):
+    def initGame(self):
+        self.initBoard()
         self.makePlayers()
         self.makeFleets()
         p:Player
@@ -20,16 +21,24 @@ class Game(object):
         self.placePlayersFleets()
         
     def initBoard(self):
-        self.board = [[0 for x in range(20)] for y in range(20)]
-        i = 0 
+        self.computerboard = [[0 for x in range(20)] for y in range(20)]
+        self.playerboard = [[0 for x in range(20)] for y in range(20)]
+
         for y in range(0,20):
             for x in range(0,20):
-                self.board[y][x] = '0'
-                i+=1
+                self.computerboard[y][x] = '0'
+                self.playerboard[y][x] = '0'
+                
 
     def printBoard(self):
-        for row in self.board:
+        print('\n\n\n\n\n\n\n\n')
+        for row in self.computerboard:
             print(row)
+
+        print('\n\n\n Your\n')
+        for row in self.playerboard:
+            print(row)
+
 
 
 
@@ -90,17 +99,22 @@ class Game(object):
             else:
                 playerships[c] = ship
                 print(type(ship), " placed at coordinate ", c[0], c[1]) 
+                if not ship.fleetName == 'Player1':
+                    self.playerboard[c[1]][c[0]] = 'S'
+
 
         x = playerships
         y = self.fleetsandcoordinates
 
 
     def startGame(self):
-        self.initBoard()
+        
         while not self.gameover:
+            
             p: Player
             print('\n\n\n\n')
             self.printBoard()
+
             for p in self.players:
                 if p.isSunk == True:
                     continue
@@ -137,6 +151,7 @@ class Game(object):
 
         print("Executing Order")
 
+
     def ExecuteAttack(self, o: Order):
         print("attack")
 
@@ -156,14 +171,15 @@ class Game(object):
             ship.damage[offset] = True
             o.orderresult = OrderResult.Shiphit
             if o.attacking == 'Player1': 
-                self.board[o.coordinates[1]][o.coordinates[0]] = '*'
+                self.computerboard[o.coordinates[1]][o.coordinates[0]] = '*'
             print(o.orderfrom, " hit ", o.attacking, " at ", o.coordinates)
+
 
         else:
             print(o.orderfrom, " missed ", o.attacking, " at ", o.coordinates)
             o.orderresult = OrderResult.Shipmiss
             if o.attacking == 'Player1':              
-                self.board[o.coordinates[1]][o.coordinates[0]] = 'X'
+                self.computerboard[o.coordinates[1]][o.coordinates[0]] = 'X'
 
 
 

@@ -5,17 +5,19 @@ from package1.Ship import *
 class Fleet(object):
     """description of class"""
     def __init__(self, name):
-        self.aircraftcarrier = Ships.AircraftCarrier(15, 0) 
+        self.aircraftcarrier = Ships.AircraftCarrier(15, 0, name) 
         self.aircraftcarrier.shipOrientation = Orientation.Horizantal
         
-        self.battleship = Ships.Battleship(0, 10)
+        self.battleship = Ships.Battleship(0, 10, name)
         self.battleship.shipOrientation = Orientation.Horizantal
         
-        self.destroyer = Ships.Destroyer(3,4)
+        self.destroyer = Ships.Destroyer(3,4,name)
         self.destroyer.shipOrientation = Orientation.Horizantal
 
-        self.ptboat = Ships.PTBoat(17,16)
-        self.submarine = Ships.Submarine(16,15)
+        self.ptboat = Ships.PTBoat(17,16,name)
+
+        self.submarine = Ships.Submarine(16,15,name)
+
         self.name = name
 
     def GetShips(self):
